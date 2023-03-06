@@ -1,8 +1,8 @@
 diff --git a/libmamba/include/mamba/core/repo.hpp b/libmamba/include/mamba/core/repo.hpp
-index 56a943704..1a2adcb1b 100644
+index de1d45c9..e3c14ead 100644
 --- a/libmamba/include/mamba/core/repo.hpp
 +++ b/libmamba/include/mamba/core/repo.hpp
-@@ -61,6 +61,7 @@ namespace mamba
+@@ -60,6 +60,7 @@ namespace mamba
          MRepo(MRepo&&);
          MRepo& operator=(MRepo&&);
  
@@ -11,10 +11,10 @@ index 56a943704..1a2adcb1b 100644
          void set_priority(int priority, int subpriority);
          void add_package_info(Repodata*, const PackageInfo& pkg_info);
 diff --git a/libmamba/src/core/repo.cpp b/libmamba/src/core/repo.cpp
-index a6060ae56..d628bb425 100644
+index 76adee68..ee9f7f8f 100644
 --- a/libmamba/src/core/repo.cpp
 +++ b/libmamba/src/core/repo.cpp
-@@ -136,6 +136,11 @@ namespace mamba
+@@ -133,6 +133,11 @@ namespace mamba
          return *this;
      }
  
@@ -27,10 +27,10 @@ index a6060ae56..d628bb425 100644
      {
          pool_set_installed(m_repo->pool, m_repo);
 diff --git a/libmambapy/libmambapy/__init__.pyi b/libmambapy/libmambapy/__init__.pyi
-index d049c4c5e..093776aea 100644
+index 799c2b75..0cd404ff 100644
 --- a/libmambapy/libmambapy/__init__.pyi
 +++ b/libmambapy/libmambapy/__init__.pyi
-@@ -1136,9 +1136,11 @@ class Repo:
+@@ -1156,9 +1156,11 @@ class Repo:
      @typing.overload
      def __init__(self, arg0: Pool, arg1: str, arg2: str, arg3: str) -> None: ...
      def add_extra_pkg_info(self, arg0: typing.Dict[str, ExtraPkgInfo]) -> None: ...
@@ -43,13 +43,13 @@ index d049c4c5e..093776aea 100644
      def set_priority(self, arg0: int, arg1: int) -> None: ...
      def size(self) -> int: ...
 diff --git a/libmambapy/src/main.cpp b/libmambapy/src/main.cpp
-index 99f64e2fd..dbcf87f50 100644
+index a6d4df99..81cfdb37 100644
 --- a/libmambapy/src/main.cpp
 +++ b/libmambapy/src/main.cpp
-@@ -202,9 +202,11 @@ PYBIND11_MODULE(bindings, m)
-                 repo_internalize(self.repo());
-             }
-         )
+@@ -191,9 +191,11 @@ PYBIND11_MODULE(bindings, m)
+                  }
+                  repo_internalize(self.repo());
+              })
 +        .def("set_channel", &MRepo::set_channel)
          .def("set_installed", &MRepo::set_installed)
          .def("set_priority", &MRepo::set_priority)
