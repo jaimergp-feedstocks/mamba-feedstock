@@ -19,6 +19,7 @@ outputs:
     script: build_mamba.sh                       # [unix]
     script: build_mamba.bat                      # [win]
     build:
+      skip: true  # [not (linux and python=='3.10.* *_cpython')]
       run_exports:
         - {{ pin_subpackage('libmamba', max_pin='x.x') }}
       ignore_run_exports:
@@ -65,6 +66,7 @@ outputs:
     script: build_mamba.sh                       # [unix]
     script: build_mamba.bat                      # [win]
     build:
+      skip: true  # [not (linux and python=='3.10.* *_cpython')]
       string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       run_exports:
         - {{ pin_subpackage('libmambapy', max_pin='x.x') }}
@@ -108,6 +110,7 @@ outputs:
     script: build_mamba.sh                       # [unix]
     script: build_mamba.bat                      # [win]
     build:
+      skip: true  # [not (linux and python=='3.10.* *_cpython')]
       string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       entry_points:
         - mamba = mamba.mamba:main
