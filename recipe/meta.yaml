@@ -8,10 +8,14 @@ package:
   name: mamba-split
 
 source:
-  url: https://github.com/jaimergp/mamba/archive/expose-set-channel.tar.gz
+  url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
+  sha256: 21e12253a8360b5e0199649ce4c66a2a9830f0cd83811d9527c57c72a2a4ec84
+  patches:
+    - add-repo-set-channel.patch
 
 build:
   number: 3
+  skip: true  # [python_impl == 'pypy']
 
 outputs:
   - name: libmamba
@@ -19,7 +23,6 @@ outputs:
     script: build_mamba.sh                       # [unix]
     script: build_mamba.bat                      # [win]
     build:
-      skip: true  # [not (linux and python=='3.10.* *_cpython')]
       run_exports:
         - {{ pin_subpackage('libmamba', max_pin='x.x') }}
       ignore_run_exports:
@@ -66,7 +69,6 @@ outputs:
     script: build_mamba.sh                       # [unix]
     script: build_mamba.bat                      # [win]
     build:
-      skip: true  # [not (linux and python=='3.10.* *_cpython')]
       string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       run_exports:
         - {{ pin_subpackage('libmambapy', max_pin='x.x') }}
@@ -110,7 +112,6 @@ outputs:
     script: build_mamba.sh                       # [unix]
     script: build_mamba.bat                      # [win]
     build:
-      skip: true  # [not (linux and python=='3.10.* *_cpython')]
       string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       entry_points:
         - mamba = mamba.mamba:main
