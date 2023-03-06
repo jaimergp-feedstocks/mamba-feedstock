@@ -8,11 +8,10 @@ package:
   name: mamba-split
 
 source:
-  url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
-  sha256: 21e12253a8360b5e0199649ce4c66a2a9830f0cd83811d9527c57c72a2a4ec84
+  url: https://github.com/jaimergp/mamba/archive/expose-set-channel.tar.gz
 
 build:
-  number: 2
+  number: 3
 
 outputs:
   - name: libmamba
