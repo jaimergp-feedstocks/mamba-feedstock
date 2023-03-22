@@ -11,7 +11,7 @@ source:
   url: https://github.com/mamba-org/mamba/archive/refs/tags/{{ release }}.tar.gz
   sha256: 21e12253a8360b5e0199649ce4c66a2a9830f0cd83811d9527c57c72a2a4ec84
   patches:
-    - add-repo-set-channel.patch
+    - add-repo-set-channel-2.patch
 
 build:
   number: 3

@@ -1,0 +1,12 @@
+diff --git a/libmamba/src/core/repo.cpp b/libmamba/src/core/repo.cpp
+index ee7cd962..a56505b0 100644
+--- a/libmamba/src/core/repo.cpp
++++ b/libmamba/src/core/repo.cpp
+@@ -58,6 +58,7 @@ namespace mamba
+         m_repo = repo_create(pool, name.c_str());
+         m_repo->appdata = this;
+         read_file(index);
++        p_channel = &Channel::from_url(url);
+     }
+ 
+     MRepo::MRepo(MPool& pool, const std::string& name, const std::vector<PackageInfo>& package_infos)
