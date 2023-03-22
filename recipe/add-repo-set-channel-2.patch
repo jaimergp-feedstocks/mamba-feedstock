@@ -1,20 +1,20 @@
 diff --git a/libmamba/src/core/repo.cpp b/libmamba/src/core/repo.cpp
-index ee7cd962..e008b57d 100644
+index 76adee68..6773ff87 100644
 --- a/libmamba/src/core/repo.cpp
 +++ b/libmamba/src/core/repo.cpp
-@@ -19,6 +19,7 @@ extern "C"  // Incomplete header
- #include "mamba/core/pool.hpp"
+@@ -9,6 +9,7 @@
  #include "mamba/core/repo.hpp"
- #include "mamba/core/util_string.hpp"
+ #include "mamba/core/output.hpp"
+ #include "mamba/core/package_info.hpp"
 +#include "mamba/core/channel_builder.hpp"
  
- 
- #define MAMBA_TOOL_VERSION "1.1"
-@@ -58,6 +59,7 @@ namespace mamba
+ extern "C"
+ {
+@@ -53,6 +54,7 @@ namespace mamba
          m_repo = repo_create(pool, name.c_str());
          m_repo->appdata = this;
          read_file(index);
 +        p_channel = &ChannelBuilder::make_cached_channel(url);
      }
  
-     MRepo::MRepo(MPool& pool, const std::string& name, const std::vector<PackageInfo>& package_infos)
+     MRepo::MRepo(MPool& pool,
