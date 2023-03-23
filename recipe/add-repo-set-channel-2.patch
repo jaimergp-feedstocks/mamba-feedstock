@@ -1,15 +1,15 @@
 diff --git a/libmamba/src/core/repo.cpp b/libmamba/src/core/repo.cpp
-index ee7cd962..e008b57d 100644
+index ee7cd962a..9d925a952 100644
 --- a/libmamba/src/core/repo.cpp
 +++ b/libmamba/src/core/repo.cpp
-@@ -19,6 +19,7 @@ extern "C"  // Incomplete header
- #include "mamba/core/pool.hpp"
- #include "mamba/core/repo.hpp"
- #include "mamba/core/util_string.hpp"
+@@ -13,6 +13,7 @@ extern "C"  // Incomplete header
+ #include <solv/repo_conda.h>
+ }
+ 
 +#include "mamba/core/channel_builder.hpp"
- 
- 
- #define MAMBA_TOOL_VERSION "1.1"
+ #include "mamba/core/context.hpp"
+ #include "mamba/core/output.hpp"
+ #include "mamba/core/package_info.hpp"
 @@ -58,6 +59,7 @@ namespace mamba
          m_repo = repo_create(pool, name.c_str());
          m_repo->appdata = this;
