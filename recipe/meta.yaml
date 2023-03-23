@@ -14,7 +14,7 @@ source:
     - add-repo-set-channel-2.patch
 
 build:
-  number: 3
+  number: 4
   skip: true  # [python_impl == 'pypy']
 
 outputs:
